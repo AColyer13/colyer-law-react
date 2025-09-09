@@ -12,6 +12,7 @@ function OnlineForm() {
 
   return (
     <main>
+      <section>
       <p className="text-brand">Practicing since 1991</p>
       <h1>Online Form</h1>
       <form onSubmit={handleSubmit}>
@@ -32,6 +33,7 @@ function OnlineForm() {
       {showModal && (
         <Modal onClose={() => setShowModal(false)} message="Form submitted!" />
       )}
+      </section>
     </main>
   );
 }
