@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 
 function About() {
@@ -14,7 +15,7 @@ function About() {
       </section>
       <section id="mission" className="card section-mt-lg section-p">
         <h3>Our Mission</h3>
-        <p>Make life’s passages easier, generation to generation.<a href="/contact">Contact us</a>and see how we can help.</p>
+        <p>Make life’s passages easier, generation to generation.<Link to="/contact">Contact us</Link>and see how we can help.</p>
         <p>Real estate, small business law, wills and estate planning attorney serving Minneapolis, Wayzata and the surrounding Twin Cities area.</p>
       </section>
       <section id="memberships" className="section-mt-lg text-center">

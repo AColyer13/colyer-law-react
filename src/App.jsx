@@ -9,12 +9,14 @@ import Contact from './pages/Contact';
 import OnlineForm from './pages/OnlineForm';
 import { useState } from 'react'
 import './App.css'
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <Router basename="/colyer-law-react/">
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

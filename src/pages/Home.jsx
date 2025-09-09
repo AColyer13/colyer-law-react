@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import { Carousel, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -62,7 +63,7 @@ function Home() {
           <li><strong>Elder Law</strong>: Elder law is the area of law that focuses on issues affecting seniors, such as estate planning, long-term care, and retirement. It helps seniors protect their assets and plan for their future.</li>
           <li><strong>Business Law</strong>: Business law is the area of law that governs business transactions and activities. It helps businesses understand their legal obligations, protect their interests, and avoid costly legal disputes.</li>
         </ul>
-        <button className="btn-learn-more">Learn More</button>
+        <Link to="/services"><button className="btn-learn-more">Learn More</button></Link>
       </section>
 
       <section id="location" className="section-mt text-center">
