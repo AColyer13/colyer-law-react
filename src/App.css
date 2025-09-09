@@ -1,0 +1,346 @@
+/* =========================================================
+   Mobile-First CSS — Production-ready
+   Features: fluid typography, glassmorphism, accessibility (WCAG 2.1 AA),
+   container queries with fallbacks, prefers-* support, optimized animations,
+   BEM organization, prevents horizontal scroll, safe-area handling
+   Targets: modern browsers + graceful fallbacks for older browsers
+   ========================================================= */
+
+/* ===================== 1. Reset / Normalize ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light dark;
+  overflow-x: clip;
+}
+@supports not (overflow-x: clip) { html { overflow-x: hidden; } }
+
+:root {
+  font-size: clamp(16px, 1.2vw, 18px);
+  --inset-top: env(safe-area-inset-top, 0px);
+  --inset-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  background: var(--surface);
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+img, picture, video, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+figure { margin: 0; }
+
+button, [type="button"], [role="button"] { font: inherit; }
+fieldset { border: 0; margin: 0; padding: 0; }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ===================== 2. Design Tokens ===================== */
+:root {
+  --surface: #f6f7f9;
+  --surface-2: rgba(255,255,255,0.6);
+  --text: #111318;
+  --muted: #5b6472;
+  --link: #0b6bcb;
+  --brand: #0a84ff;
+  --focus: #1e9bf0;
+  --border: rgba(17,19,24,0.08);
+  --space-1: clamp(0.5rem, 0.4rem + 0.3vw, 0.75rem);
+  --space-2: clamp(0.75rem, 0.6rem + 0.6vw, 1.25rem);
+  --space-3: clamp(1rem, 0.8rem + 1vw, 2rem);
+  --radius: 1.25rem;
+  --radius-lg: 1.75rem;
+  --shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.08);
+  --step-0: clamp(1rem, 0.92rem + 0.3vw, 1.125rem);
+  --step-1: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  --step-2: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
+  --step-3: clamp(1.75rem, 1.4rem + 2vw, 2.5rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface: #0b0c0f;
+    --surface-2: rgba(22,24,29,0.6);
+    --text: #eef1f6;
+    --muted: #a2a8b4;
+    --link: #6ab6ff;
+    --brand: #0a84ff;
+    --focus: #53b1ff;
+    --border: rgba(238,241,246,0.12);
+  }
+}
+
+/* ===================== 3. Typography ===================== */
+html { -webkit-font-smoothing: antialiased; }
+h1 { font-size: var(--step-3); line-height: 1.1; margin: 0 0 var(--space-2); }
+h2 { font-size: var(--step-2); line-height: 1.15; margin: 0 0 var(--space-1); }
+p { font-size: var(--step-0); color: var(--text); margin: 0 0 var(--space-2); }
+small { font-size: 0.875em; color: var(--muted); }
+
+a { color: var(--link); text-decoration: none; }
+a:hover, a:focus { text-decoration: underline; }
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  margin-top: .5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+p, li, label, address {
+  color: var(--text);
+}
+
+/* ===================== 4. Layout Utilities ===================== */
+.container {
+  width: min(100% - calc(var(--space-3) * 2), 120ch);
+  margin-inline: auto;
+  padding: calc(var(--space-3) + var(--inset-top)) var(--space-3) calc(var(--space-3) + var(--inset-bottom));
+}
+.grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(auto-fit, minmax(clamp(16rem, 45vw, 22rem), 1fr));
+}
+
+.cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  width: 100%;
+}
+.cards-row > * {
+  min-width: 220px;
+  max-width: 320px;
+  flex: 1 1 220px;
+  margin-bottom: 24px;
+}
+@media (max-width: 600px) {
+  .cards-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .cards-row > * {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+section {
+  margin-bottom: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+/* ===================== 5. Navigation ===================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-block: 0.5rem;
+  background: color-mix(in oklab, var(--surface-2), transparent 35%);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+}
+@supports not (backdrop-filter: blur(16px)) {
+  .nav { background: color-mix(in oklab, var(--surface), transparent 90%); }
+}
+
+.nav__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.nav__menu { display: flex; flex-direction: column; gap: clamp(0.5rem, 0.3rem + 1vw, 1rem); list-style: none; margin: 0; padding: 0 var(--space-1) var(--space-1); }
+
+.nav__toggle {
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, var(--surface-2), transparent 20%);
+  border: 1px solid var(--border);
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+.nav__toggle[aria-expanded="true"] { box-shadow: 0 6px 18px rgba(0,0,0,0.06); transform: translateY(-1px); }
+
+@media (min-width: 48rem) {
+  .nav { background: transparent; padding-block: 0.5rem; }
+  .nav__menu { flex-direction: row; padding: 0; gap: var(--space-2); }
+  .nav__toggle { display: none; }
+}
+
+/* ===================== 6. Glassmorphism Components ===================== */
+.glass {
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0);
+  border: 1px solid var(--border);
+  /* No blur, no tint */
+  box-shadow: var(--shadow);
+}
+@supports not (backdrop-filter: blur(22px)) {
+  .glass { background: rgba(255,255,255,0); }
+}
+
+/* ===================== 7. Cards ===================== */
+.card, .testimonial-card, .contact-info-card {
+  border-radius: 28px;
+  background: rgba(255,255,255,0);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 1.5px 6px rgba(0,0,0,0.08) inset;
+  /* No blur, no tint */
+  padding: var(--space-3);
+  color: var(--text);
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+@supports not (backdrop-filter: blur(22px)) {
+  .card, .testimonial-card, .contact-info-card {
+    background: rgba(255,255,255,0);
+  }
+}
+.card__media > img, .card__media > video { width: 100%; height: auto; border-radius: calc(var(--radius) - 0.375rem); display: block; }
+.card__content { margin-top: var(--space-2); }
+
+.card, .card-inner-shadow, .testimonial-card-inner-shadow, .contact-info-card-inner-shadow {
+  box-shadow: 0 0 15px -5px #000000 inset;
+}
+
+/* ===================== 8. Buttons ===================== */
+button, .btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.8em 1.5em;
+  border-radius: 14px;
+  border: none;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: var(--step-0);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: .5rem;
+  transition: background 0.2s, box-shadow 0.2s, transform 160ms cubic-bezier(.2,.9,.2,1);
+}
+button:hover, .btn:hover {
+  background: #005bb5;
+  color: #fff;
+  transform: translateY(-2px);
+}
+button:active, .btn:active {
+  transform: translateY(0);
+}
+.btn--brand {
+  background: linear-gradient(180deg, var(--brand), color-mix(in oklab, var(--brand) 85%, black 10%));
+  color: #fff;
+}
+
+/* ===================== 9. Responsive Breakpoints ===================== */
+@media (min-width: 30rem) { /* 480px */
+  .container { padding-inline: calc(var(--space-3) + var(--inset-top)); }
+}
+@media (min-width: 48rem) { /* 768px */
+  .grid { gap: var(--space-3); }
+}
+@media (min-width: 64rem) { /* 1024px */
+  :root { --radius-lg: 2rem; }
+}
+@media (min-width: 90rem) { /* 1440px */
+  .container { max-width: 1400px; }
+}
+
+/* ===================== 10. Container Queries + Fallback ===================== */
+.cards { container-type: inline-size; display: grid; gap: var(--space-2); grid-template-columns: 1fr; }
+@container (min-width: 40rem) { .cards { grid-template-columns: repeat(2, 1fr); } }
+@supports not (container-type: inline-size) {
+  .cards { grid-template-columns: 1fr; }
+  @media (min-width: 40rem) { .cards { grid-template-columns: repeat(2, 1fr); } }
+}
+
+/* ===================== 11. Accessibility & System Preferences ===================== */
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-scale: 0; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+@media (prefers-contrast: more) {
+  :root { --border: rgba(17,19,24,0.24); }
+  .glass, .card { box-shadow: none; }
+}
+
+/* ===================== 12. Forms ===================== */
+:root { accent-color: var(--brand); }
+input[type="text"], textarea, select {
+  width: 100%; padding: 0.75rem 1rem; border-radius: 0.875rem; border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface-2), transparent 10%);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  min-height: 44px; font-size: var(--step-0);
+}
+
+/* ===================== 13. Utilities ===================== */
+.u-row { display: flex; gap: var(--space-2); align-items: center; }
+.u-stack { display: flex; flex-direction: column; gap: var(--space-2); }
+.hidden { display: none !important; }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: 32px !important; }
+.mt-3 { margin-top: 40px !important; }
+.mt-8 { margin-top: 8px; }
+.p-2 { padding: 24px !important; }
+.p-3 { padding: 36px !important; }
+.text-center { text-align: center !important; }
+.text-brand { color: #218c5a !important; font-weight: bold; }
+.btn-block-center { display: block; margin: .5rem auto 0 auto; }
+.btn-learn-more { display: block; margin: 24px auto 0 auto; }
+.btn-contact-us { margin-top: 16px; background: #218c5a; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; }
+.section-mt { margin-top: 32px !important; }
+.section-mt-lg { margin-top: 40px !important; }
+.section-p { padding: 24px !important; }
+.section-p-lg { padding: 36px !important; }
+.card-center { min-width: 340px; max-width: 800px; margin: 0 auto; }
+.card-inline { display: inline-block; min-width: 340px; max-width: 480px; margin: 0 auto; }
+.card-padded { padding: 24px; border-radius: 28px; margin-bottom: 24px; }
+.card-padded-lg { padding: 36px; }
+.form-flex { display: flex; justify-content: space-between; margin: 40px 0; }
+.form-half { flex: 1; margin-right: 40px; }
+.form-max { flex: 1; max-width: 400px; }
+.input-full { width: 100%; }
+.textarea-min { min-height: 80px; }
+.label-mb { margin-bottom: 16px; }
+.testimonial-icon { font-size: 24px; }
+
+/* ===================== 14. Animations & Affordances ===================== */
+.fade-in { animation: fadeIn 360ms var(--ease, cubic-bezier(.2,.9,.2,1)) both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+a, button, .btn { min-height: 44px; min-width: 44px; padding-inline: 0.6rem; }
+
+/* ===================== 15. Progressive Enhancement for Legacy Browsers ===================== */
+.no-support-backdrop .glass, .no-support-backdrop .card { background: rgba(255,255,255,0.97); border: 1px solid rgba(0,0,0,0.06); }
+
+/* ===================== 16. Misc Helpers ===================== */
+.lead { font-size: var(--step-1); color: var(--muted); }
+.kicker { font-size: 0.875rem; font-weight: 600; color: var(--brand); }
+
+/* ===================== End of file ===================== */
