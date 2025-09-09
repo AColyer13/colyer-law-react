@@ -8,7 +8,7 @@ function Home() {
       <section>
         <p className="text-brand">Practicing since 1991</p>
         <h1>Wills, Estate Planning, Real Estate and Business Law</h1>
-        <button className="btn-block-center">Contact</button>
+        
       </section>
 
       <Row>
@@ -78,13 +78,7 @@ function Home() {
         </div>
       </section>
 
-     <section id="help" className="section-mt-lg text-center">
-        <div className="card card-inline card-padded-lg">
-          <h2>We Help Solve Your Legal Issues</h2>
-          <p>Make life’s passages easier, generation to generation</p>
-          <button className="btn-contact-us">Contact Us</button>
-        </div>
-      </section>
+ 
     </main>
   );
 }

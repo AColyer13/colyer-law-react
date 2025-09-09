@@ -41,13 +41,7 @@ function About() {
           </div>
         </div>
       </section>
-      <section id="help" className="section-mt-lg text-center">
-        <div className="card card-inline card-padded-lg">
-          <h2>We Help Solve Your Legal Issues</h2>
-          <p>Make life’s passages easier, generation to generation</p>
-          <button className="btn-contact-us">Contact Us</button>
-        </div>
-      </section>
+      
     </main>
   );
 }

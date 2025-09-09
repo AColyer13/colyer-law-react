@@ -4,6 +4,12 @@ import '../App.css';
 function Footer() {
   return (
     <footer className="mt-3 text-center">
+      <div className="card card-inline card-padded-lg">
+        <h2>We Help Solve Your Legal Issues</h2>
+        <p>Make life’s passages easier, generation to generation</p>
+        <button className="btn-contact-us">Contact Us</button>
+      </div>
+      <p>&nbsp;</p>
       <p>Real estate, small business law, wills and estate planning attorney serving Minneapolis, Wayzata and the surrounding Twin Cities area.</p>
       <nav className="mt-2">
         <a href="/" style={{ marginRight: 16 }}>Home</a>

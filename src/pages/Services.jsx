@@ -39,13 +39,6 @@ function Services() {
           <p>Current Minnesota law allows only $3,000,000 to pass estate tax-free. Current federal law allows $12,920,000 to pass estate tax-free. The surviving spouse may inherit an unlimited amount of assets without paying estate taxes. However, if the taxable estate exceeds the above referenced dollar amounts and the entire estate is left to someone other than a spouse, the surviving spouse may lose the option of subsequently leaving an equivalent amount of assets to his or her chosen beneficiaries without incurring estate taxes. Estate planning attorneys can assist clients to create trusts that allow married couples to take full advantage of these shifting exemptions. <a href="#">Contact us</a> to find out how a qualified estate planning attorney can help.</p>
         </div>
       </section>
-      <section id="help" className="section-mt-lg text-center">
-        <div className="card card-inline card-padded-lg">
-          <h2>We Help Solve Your Legal Issues</h2>
-          <p>Make life’s passages easier, generation to generation</p>
-          <button className="btn-contact-us">Contact Us</button>
-        </div>
-      </section>
     </main>
   );
 }
