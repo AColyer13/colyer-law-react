@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function Header() {
   const [expanded, setExpanded] = useState(false);
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    const matchDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const updateTheme = () => setTheme(matchDark.matches ? 'dark' : 'light');
+    updateTheme();
+    matchDark.addEventListener('change', updateTheme);
+    return () => matchDark.removeEventListener('change', updateTheme);
+  }, []);
+
   return (
     <Navbar
-      bg="dark"
-      variant="dark"
+      bg={theme}
+      variant={theme}
       expand="md"
-      data-bs-theme="dark"
       role="navigation"
-      className="nav py-1"
       expanded={expanded}
       onToggle={setExpanded}
     >
