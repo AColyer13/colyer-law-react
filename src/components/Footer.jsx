@@ -1,15 +1,28 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import '../App.css';
 
 function Footer() {
+  const location = useLocation();
+  const hideMainFooter = location.pathname === '/contact' || location.pathname === '/online-form';
   return (
     <footer className="mt-3 text-center">
-      <div className="card card-inline card-padded-lg">
-        <h2>We Help Solve Your Legal Issues</h2>
-        <p>Make life’s passages easier, generation to generation</p>
-        <button className="btn-contact-us">Contact Us</button>
-      </div>
+      {!hideMainFooter && (
+        <div className="card card-inline card-padded-lg">
+          <h2>We Help Solve Your Legal Issues</h2>
+          <p>Make life’s passages easier, generation to generation</p>
+          <button className="btn-contact-us">Contact Us</button>
+        </div>
+      )}
       <p>&nbsp;</p>
+      <Footer2 />
+    </footer>
+  )
+}
+
+function Footer2() {
+  return (
+    <>
       <p>Real estate, small business law, wills and estate planning attorney serving Minneapolis, Wayzata and the surrounding Twin Cities area.</p>
       <nav className="mt-2">
         <a href="/" style={{ marginRight: 16 }}>Home</a>
@@ -20,8 +33,10 @@ function Footer() {
       </nav>
       <br />
       <p>&copy; {new Date().getFullYear()} Colyer Law. All rights reserved.</p>
-    </footer>
+    </>
   );
 }
+
+
 
 export default Footer;
