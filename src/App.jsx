@@ -14,14 +14,14 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <Router>
+    <Router basename="/colyer-law-react/">
       <Header />
       <Routes>
-        <Route path="/colyer-law-react/" element={<Home />} />
-        <Route path="/colyer-law-react/about" element={<About />} />
-        <Route path="/colyer-law-react/services" element={<Services />} />
-        <Route path="/colyer-law-react/contact" element={<Contact />} />
-        <Route path="/colyer-law-react/online-form" element={<OnlineForm />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/online-form" element={<OnlineForm />} />
       </Routes>
       <Footer />
     </Router>
