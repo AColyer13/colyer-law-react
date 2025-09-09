@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import '../App.css';
 
 function Footer() {
@@ -23,19 +23,23 @@ function Footer() {
 function Footer2() {
   return (
     <>
-      <p>Real estate, small business law, wills and estate planning attorney serving Minneapolis, Wayzata and the surrounding Twin Cities area.</p>
+      <p>
+        Real estate, small business law, wills and estate planning attorney serving Minneapolis, Wayzata and the surrounding Twin Cities area.
+      </p>
       <nav className="mt-2">
-        <a href="/" style={{ marginRight: 16 }}>Home</a>
-        <a href="/about" style={{ marginRight: 16 }}>About</a>
-        <a href="/services" style={{ marginRight: 16 }}>Services</a>
-        <a href="/contact" style={{ marginRight: 16 }}>Contact</a>
-        <a href="/online-form">On-Line Form</a>
+        <Link to="/" style={{ marginRight: 16 }}>Home</Link>
+        <Link to="/about" style={{ marginRight: 16 }}>About</Link>
+        <Link to="/services" style={{ marginRight: 16 }}>Services</Link>
+        <Link to="/contact" style={{ marginRight: 16 }}>Contact</Link>
+        <Link to="/online-form">On-Line Form</Link>
       </nav>
       <br />
       <p>&copy; {new Date().getFullYear()} Colyer Law. All rights reserved.</p>
     </>
   );
 }
+
+Footer2.displayName = "Footer2";
 
 
 
