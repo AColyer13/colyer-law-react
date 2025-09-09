@@ -322,13 +322,39 @@ input[type="text"], textarea, select {
 .card-inline { display: inline-block; min-width: 340px; max-width: 480px; margin: 0 auto; }
 .card-padded { padding: 24px; border-radius: 28px; margin-bottom: 24px; }
 .card-padded-lg { padding: 36px; }
-.form-flex { display: flex; justify-content: space-between; margin: 40px 0; }
-.form-half { flex: 1; margin-right: 40px; }
-.form-max { flex: 1; max-width: 400px; }
-.input-full { width: 100%; }
-.textarea-min { min-height: 80px; }
-.label-mb { margin-bottom: 16px; }
-.testimonial-icon { font-size: 24px; }
+.form-flex {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 40px 0;
+  gap: 40px;
+}
+@media (max-width: 900px) {
+  .form-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .form-half, .form-max {
+    margin-right: 0 !important;
+    max-width: 100% !important;
+    width: 100%;
+  }
+}
+.form-half {
+  flex: 1;
+  margin-right: 40px;
+  max-width: 500px;
+}
+.form-max {
+  flex: 1;
+  max-width: 400px;
+}
+.centered-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* ===================== 14. Animations & Affordances ===================== */
 .fade-in { animation: fadeIn 360ms var(--ease, cubic-bezier(.2,.9,.2,1)) both; }

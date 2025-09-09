@@ -20,29 +20,6 @@ function Contact() {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </section>
-      <section className="cards-row">
-        <div className="contact-info-card contact-info-card-inner-shadow card-padded">
-          <div className="label-mb">
-            <strong>Email Address</strong><br />
-            jeff@colyerlaw.com
-          </div>
-        </div>
-        <div className="contact-info-card contact-info-card-inner-shadow card-padded">
-          <div className="label-mb">
-            <strong>Phone Number</strong><br />
-            Phone: 952-476-8164<br />
-            Fax: 952-476-7850
-          </div>
-        </div>
-        <div className="contact-info-card contact-info-card-inner-shadow card-padded">
-          <div className="label-mb">
-            <strong>Office</strong><br />
-            Colyer Law Office, P.A.<br />
-            681 East Lake Street, Suite 264B<br />
-            Wayzata, MN 55391
-          </div>
-        </div>
-      </section>
       <section className="form-flex">
         <div className="form-half">
           <h2>Contact Us</h2>
