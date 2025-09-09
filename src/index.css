@@ -1,0 +1,7 @@
+/* Navigation bar with transparent fill and blur */
+.nav {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid rgba(17,19,24,0.08);
+}
