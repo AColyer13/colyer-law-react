@@ -47,7 +47,7 @@ function Home() {
         <h2>About</h2>
         <p>Jeff Colyer is a member of the Minnesota State Bar Association and Hennepin County Bar Association. He has practiced law and worked in the trust and estate planning field for the past thirty years. He has been with the trust departments of Marquette Bank Minneapolis and Wells Fargo Bank Wayzata and with the United States Treasury Department. Colyer Law Office is located in Wayzata MN.</p>
         <h3>Practicing Since 1991</h3>
-        <p>Make life’s passages easier, generation to generation.<a href="#contact">Contact us</a>and see how we can help.</p>
+        <p>Make life’s passages easier, generation to generation.<Link to="/contact">Contact us</Link>and see how we can help.</p>
         <p>Real estate, small business law, wills and estate planning attorney serving Minneapolis, Wayzata and the surrounding Twin Cities area.</p>
       </section>
       <section id="services" className="card section-mt section-p">
